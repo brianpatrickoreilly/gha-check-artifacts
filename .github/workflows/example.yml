@@ -16,8 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: simulate test
-        run: ./simulate-test.sh
+        id: simulate-test
+        run: |
+          timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+          ./simulate_test.sh $timestamp
+          echo "tag=$timestamp" >> $GITHUB_OUTPUT
       - uses: ncipollo/release-action@v1
         with:
+          # get tag from output of simulate test script
+          tag: ${{ steps.simulate-test.outputs.tag }}
           artifacts: "output/*"
           bodyFile: "output_body.md"

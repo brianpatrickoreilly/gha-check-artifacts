@@ -7,8 +7,8 @@
 # create the output directory if it doesn't exist
 mkdir -p output
 
-# generate a fake report file with the current timestamp
-timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+# generate a fake report file with the timestamp from the first argument
+timestamp=$1
 report_file="output/report_${timestamp}.txt"
 echo "This is a fake report file generated at ${timestamp}" > $report_file
 
@@ -28,3 +28,6 @@ fi
 # add some random text to the body
 echo "" >> $body_file
 echo "Here is some random text to fill the body of the report. This could be more detailed information about the tests that were run, the environment they were run in, or any other relevant information." >> $body_file
+
+
+echo "${timestamp}"
