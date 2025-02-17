@@ -1,0 +1,23 @@
+name: Release
+on:
+  push:
+    branches:
+      - 'main'
+  schedule:
+    # Run every day at 8am UTC
+    - cron: '0 8 * * *'
+
+jobs:
+  example-automation-test:
+    # runs-on: medium
+    runs-on: ubuntu-latest  # in this case use shared runners, change to self-hosted for non-example
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: simulate test
+        run: ./simulate-test.sh
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "output/*"
+          bodyFile: "output_body.md"
