@@ -3,9 +3,9 @@ on:
   push:
     branches:
       - 'main'
-  schedule:
-    # Run every day at 8am UTC
-    - cron: '0 8 * * *'
+#  schedule:
+#    # Run every day at 8am UTC
+#    - cron: '0 8 * * *'
 
 jobs:
   example-automation-test:
